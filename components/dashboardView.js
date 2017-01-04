@@ -10,26 +10,20 @@ import {
   ListView,
   ScrollView,
   Image,
-
   TouchableHighlight,
   ToolbarAndroid,
   TouchableOpacity,
 } from 'react-native';
 
-import { Container, Card, CardItem, Thumbnail, Footer, FooterTab, Header, Content, Title, Button, Icon } from 'native-base';
+import { Container, List, ListItem, Grid, Col, Row, Card, CardItem, Thumbnail, Header, Content, Title, Button, Icon } from 'native-base';
 
 const detalleElemento = require ('./detalleElementoView')
-const styles = require ('../styles')
+const Cabeza = require ('./cabezaView')
 const REQUEST_URL = 'http://ranking.bhekel.com/bhekelApp/oficinas.json'
-const moment = require('moment')
+const styles = require ('../styles')
 
-require('moment/locale/pt')
-moment.locale('es')
-
-var dia = moment().format("DD");
-var mes = moment().format("MMMM")
-
-var primerDia = moment("20161020", "YYYYMMDD")
+const MenuTop = require('./menuTop')
+const Footer = require('./footer')
 
 class dashboardView extends Component{
 constructor(props){
@@ -56,7 +50,8 @@ fetchData(){
      })
    })
  }
-//
+//split array de donos
+
  onElementoPressed(elemento){
 
    this.props.navigator.push({
@@ -70,74 +65,43 @@ fetchData(){
    var urlImage = 'http://ranking.bhekel.com/bhekelApp/RankingListaOficinas/SantaCruzRank.png'
      urlImage += '?random_number='+new Date().getTime()
    return(
-     <TouchableOpacity>
-           <View style={styles.elementoContainer}>
-             <View style={styles.puestoWrap}>
-               <Text style={styles.corazon}>{elemento.Puesto}</Text>
+     <TouchableOpacity onPress={()=>this.onElementoPressed(elemento)}>
+           <View style={{flexDirection:'row', borderBottomWidth:1, borderColor:styles.constants.colorBase, margin:15}}>
+             <View style={{backgroundColor:styles.constants.colorBase, flex:1, alignItems:'center', padding:10, margin:5, borderRadius:5}}>
+               <Text style={{fontSize:20, color:'white'}}>{elemento.Puesto}</Text>
              </View>
-             <Text style={styles.pais}>{elemento.Escritorio}</Text>
-             <Icon style={styles.icono} name="ios-menu" onPress={()=>this.onElementoPressed(elemento)}/>
+             <View style={{flex:3, alignItems:'flex-start', justifyContent:'center'}}>
+               <Text style={{fontSize:16, color:'black', fontWeight:'600'}}>{elemento.Escritorio}</Text>
+             </View>
+             <View style={{flex:4, flexDirection:'column'}}>
+               <Text style={{fontSize:10, textAlign:'left'}}>{elemento.Nombre}</Text>
+             </View>
+             <View style={{flex:1, justifyContent:'center'}}>
+             <Icon name="ios-stats"/>
+             </View>
            </View>
      </TouchableOpacity>
 
      )
  }
+
 render(){
+
   // var urlHeader = 'http://ranking.bhekel.com/bhekelApp/RankingListaOficinas/header.jpg'
   //   urlHeader += '?random_number='+new Date().getTime()
+
     return(
-      <Container>
-        <Header backgroundColor="#ff6c6c">
-            <Button transparent>
-                <Icon name='ios-arrow-back' />
-            </Button>
-
-          <Title>Ranking Escritorios</Title>
-
-            <Button transparent>
-                <Icon name='ios-menu' />
-            </Button>
-        </Header>
-            <View style={styles.centrado}>
-              <View style={styles.unTercio}>
-
-
-                <Card style={{ flex: 0 }}>
-                     <CardItem>
-                         <Thumbnail source={{uri:'http://ranking.bhekel.com/bhekelApp/images/fondoRanking.jpg'}} />
-                         <Text>NativeBase</Text>
-                         <Text note>GeekyAnts</Text>
-                     </CardItem>
-
-                     <CardItem>
-                         <Image style={{ resizeMode: 'cover', width: null }} source={{uri:'http://ranking.bhekel.com/bhekelApp/images/fondoRanking.jpg'}} />
-                     </CardItem>
-
-                     <CardItem>
-                         <Button transparent>
-                             <Icon name="logo-github" />
-                             1,926
-                         </Button>
-                     </CardItem>
-                </Card>
-
-
-                  <Text>1</Text>
-
-
-              </View>
-              <View style={styles.dosTercios}>
-                <Text>2</Text>
-              </View>
-            </View>
-          <Footer backgroundColor="#ff6c6c">
-              <FooterTab>
-                  <Button transparent>
-                      <Icon name='ios-call' />
-                  </Button>
-              </FooterTab>
-          </Footer>
-      </Container>
+<View style={{flex:1}}>
+<MenuTop navigator={this.props.navigator}/>
+<Cabeza fondo="ESCRITORIO" titulo="ESCRITORIOS"/>
+  <View style={{flex:2, backgroundColor:'white'}}>
+    <ListView
+      dataSource={this.state.dataSource}
+      renderRow={(rowData) => this.renderElemento(rowData)}
+    />
+  </View>
+  <Footer />
+</View>
     )
   }
 

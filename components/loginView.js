@@ -14,7 +14,7 @@ import {
   AppRegistry,
   View,
   Text,
-   ScrollView,
+  ScrollView,
   TouchableHighlight,
   StyleSheet,
   Image,
@@ -22,21 +22,15 @@ import {
 
 const styles = require('../styles')
 
+
 class loginView extends Component{
   render(){
 
 return(
-<View style={styles.fondo}>
-        <Image source={{uri:'http://ranking.bhekel.com/bhekelApp/images/loginBack.jpg'}} style={styles.centradoContainer}>
-
-          <View style={styles.unTercio}>
-            <Text style={styles.aBienvenido}><H1>Bienvenido</H1></Text>
-            <Text style={styles.aLogin}>a</Text>
+        <Image source={{uri:'http://ranking.bhekel.com/bhekelApp/images/loginBack.jpg'}} style={{backgroundColor:'red', flex:1, justifyContent:'center', alignItems:'center', padding:60}}>
+            <Text><H1>Bienvenido</H1></Text>
+            <Text>a</Text>
             <Text style={styles.bhekelLogin}>Bhekel</Text>
-          </View>
-          <View style={styles.unTercio}>
-            <Container>
-              <Content>
                 <InputGroup>
                   <Icon name="ios-contact" style={{ color: 'white' }} />
                   <Input placeholder="Usuario"/>
@@ -45,42 +39,16 @@ return(
                 <Icon name="ios-key" style={{ color: 'white' }} />
                 <Input placeholder="Contraseña" secureTextEntry={true} />
                 </InputGroup>
-              </Content>
-            </Container>
-          </View>
-          <View style={styles.unTercio}>
-            <Button block rounded style={{backgroundColor:'#ff6c6c'}} onPress={()=>this.onLogin("OFICIAL")}> Ingresar </Button>
-          </View>
+            <Button block rounded style={{backgroundColor:'#ff6c6c', margin:15}} onPress={()=>this.onLogin("MENU")}> Ingresar </Button>
         </Image>
-</View>
-
     )
 }
 onLogin(param){
-
   switch (param) {
-    case "OFICIAL":{
+    case "MENU":{
       this.props.navigator.push({
-        title:'Dashboard',
-        name:'Dashboard',
-        passProps:{}
-      })
-      break
-    }
-
-    case "TENIS":{
-      this.props.navigator.push({
-        title:'Ranking LTB',
-        name:'Tenis',
-        passProps:{}
-      })
-      break
-    }
-
-    case "VIDEOS":{
-      this.props.navigator.push({
-        title:'Videos',
-        name:'Videos',
+        title:'MENU',
+        name:'Menu',
         passProps:{}
       })
       break
