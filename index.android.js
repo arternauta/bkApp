@@ -19,6 +19,12 @@ const Dashboard = require('./components/dashboardView')
 const Tenis = require('./components/tenisView')
 const Videos = require('./components/videosView')
 const Menu = require('./components/menu')
+const Alta = require('./components/alta')
+const Distribuidores = require('./components/distribuidores')
+const Listameses = require('./components/listameses')
+const Encuesta = require('./components/encuestaView')
+const EntradaLTB = require('./components/entradaLTB')
+const TenisFemenino = require('./components/tenisFemenino')
 
 //Create component
 class bkApp extends Component{
@@ -48,6 +54,30 @@ class bkApp extends Component{
          return <Menu {...route.props} navigator={navigator} route={route}/>
          break
        }
+       case 'Alta':{
+          return <Alta {...route.props} navigator={navigator} route={route}/>
+          break
+        }
+      case 'Distribuidores':{
+           return <Distribuidores {...route.props} navigator={navigator} route={route}/>
+           break
+         }
+      case 'Listameses':{
+          return <Listameses {...route.props} navigator={navigator} route={route}/>
+            break
+        }
+      case 'Encuesta':{
+            return <Encuesta {...route.props} navigator={navigator} route={route}/>
+              break
+          }
+      case 'EntradaLTB':{
+                return <EntradaLTB {...route.props} navigator={navigator} route={route}/>
+                  break
+              }
+      case 'EntradaLTB':{
+              return <TenisFemenino {...route.props} navigator={navigator} route={route}/>
+                    break
+                      }
     }
 
 
@@ -55,7 +85,7 @@ class bkApp extends Component{
 render(){
   return(
     <Navigator
-      initialRoute={{name:'Login'}}
+      initialRoute={{name:'EntradaLTB'}}
       renderScene={this.renderScene }
       >
     </Navigator>

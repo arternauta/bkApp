@@ -58,16 +58,16 @@ class cabezaView extends Component{
 }
 
 componentDidMount(){
-myTimer = setInterval(()=>{
+/*myTimer = setInterval(()=>{
     var hB = moment().tz("America/Sao_Paulo").format('h:mm:ss')
     var hLP = moment().tz("America/La_Paz").format('h:mm:ss')
     var hAs = moment().tz("America/Asuncion").format('h:mm:ss')
     this.setState({ horarioBrasilia: hB, horarioLaPaz: hLP , horarioAsuncion: hAs})
-  },1000)
+    console.log('QUI ESTAEL ERROR')
+  },1000)*/
 }
-
 componentWillUnmount(){
-  clearInterval(myTimer)
+  //clearInterval(myTimer)
 }
   render(){
     return(
@@ -85,11 +85,7 @@ componentWillUnmount(){
           <View style={{alignItems:'center'}}>
             <Text style={{fontSize:20, fontWeight:'800', color:'black'}}> {diaSemana},{dia} de {mes} de {ano}</Text>
           </View>
-          <View style={{flexDirection:'row', justifyContent:'center'}}>
-              <Text style={{fontSize:10}}>{this.state.horarioBrasilia} en Brasilia - </Text>
-              <Text style={{fontSize:10}}>{this.state.horarioAsuncion} en Paraguay - </Text>
-              <Text style={{fontSize:10}}>{this.state.horarioLaPaz} en Bolivia</Text>
-          </View>
+
         </Image>
       </View>
     )

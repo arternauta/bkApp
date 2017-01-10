@@ -7,11 +7,29 @@ import {
 class Baul extends Component{
   render(){
     return(
-      <View>
-        <Text>
-          Baul
-        </Text>
-      </View>
+      <Container>
+          <View>
+              <DeckSwiper
+                  dataSource={cards}
+                  renderItem={item =>
+                      <Card style={{ elevation: 3 }}>
+                          <CardItem>
+                              <Thumbnail source={item.image} />
+                              <Text>{item.text}</Text>
+                              <Text note>NativeBase</Text>
+                          </CardItem>
+                          <CardItem>
+                              <Image style={{ resizeMode: 'cover', width: null }} source={item.image} />
+                          </CardItem>
+                          <CardItem>
+                              <Icon name="ios-heart" style={{ color: '#ED4A6A' }} />
+                              <Text>{item.name}</Text>
+                          </CardItem>
+                      </Card>
+                  }
+              />
+          </View>
+      </Container>
     )
   }
 }

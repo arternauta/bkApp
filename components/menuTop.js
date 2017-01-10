@@ -17,18 +17,23 @@ const styles = require('../styles')
 class MenuTop extends Component{
   popView(){
     this.props.navigator.pop()
-    clearInterval(myTimer)
   }
-
+alMenu(){
+  this.props.navigator.push({
+    title:'MENU',
+    name:'Menu',
+    passProps:{}
+  })
+}
   render(){
     return(
       <Header backgroundColor={this.props.color}>
         <Button transparent onPress={()=>this.popView()}>
           <Icon name='ios-arrow-back'/>
         </Button>
-        <Title>Ranking Escritorios</Title>
+        <Title>{this.props.title}</Title>
           <Button transparent>
-            <Icon name='ios-menu'/>
+            <Icon name='ios-menu' onPress={()=>this.alMenu()}/>
           </Button>
       </Header>
     )
