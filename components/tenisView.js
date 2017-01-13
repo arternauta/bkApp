@@ -55,6 +55,14 @@ class tenisView extends Component{
     })
 
    }
+   irFemenino(){
+     this.props.navigator.push({
+
+       title:'Tenis Femenino',
+       name:'TenisFemenino',
+       passProps:{}
+   })
+ }
 
 onElementoPressed(elemento){
   this.setState({
@@ -96,7 +104,7 @@ onElementoPressed(elemento){
         </View>
         <View style={{backgroundColor:'#01a9bd',flexDirection:'row', justifyContent:'space-around'}}>
           <View>
-            <Button transparent textStyle={{color:'white'}}>
+            <Button transparent textStyle={{color:'white'}} onPress={()=>{this.irFemenino()}}>
               FEMENINO
               <Icon style={{color:'white'}} name='ios-female' />
             </Button>

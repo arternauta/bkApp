@@ -59,7 +59,7 @@ class CabezaTenis extends Component{
     super(props)
     this.state = {
       titulo: "",
-      fondo:"https://firebasestorage.googleapis.com/v0/b/bhekel-51204.appspot.com/o/tenis%2Fmasculino%2FBhekel.jpg?alt=media&token=ae57e408-cdb6-4f70-9199-d94c0c4c229a",
+      fondo:"https://firebasestorage.googleapis.com/v0/b/bhekel-51204.appspot.com/o/tenis%2Ffondos%2FBhekel.jpg?alt=media&token=58be9706-a8ae-4e26-9f0e-ac8ea1e3ed85",
       nombre:"",
       pais:"",
       puesto:"",
@@ -73,9 +73,21 @@ class CabezaTenis extends Component{
 
 }
 
+static get defaultProps() {
+    return {
+      foto:'https://firebasestorage.googleapis.com/v0/b/bhekel-51204.appspot.com/o/tenis%2Ffondos%2FBhekel.jpg?alt=media&token=58be9706-a8ae-4e26-9f0e-ac8ea1e3ed85'
+    }
+  }
+
 
 componentDidMount(){
+  /*
+  var objeto = '[{"fechaInicio":"","puesto":"1","nombre":"Cileide","pais":"Brasil","edad":"","altura":"","nacimiento":"","juego":"","foto":"","puntos":"3000","categoria":""},{"fechaInicio":"","puesto":"2","nombre":"Asuncion","pais":"Brasil","edad":"","altura":"","nacimiento":"","juego":"","foto":"","puntos":"2000","categoria":""},{"fechaInicio":"","puesto":"3","nombre":"Lorena","pais":"Brasil","edad":"","altura":"","nacimiento":"","juego":"","foto":"","puntos":"1800","categoria":""},{"fechaInicio":"","puesto":"4","nombre":"Andrea","pais":"Bolivia","edad":"20","altura":"1.52","nacimiento":"Argentina","juego":"Diestro","foto":"","puntos":"1200","categoria":"B"},{"fechaInicio":"","puesto":"5","nombre":"Romina","pais":"Paraguay","edad":"","altura":"","nacimiento":"","juego":"","foto":"","puntos":"1080","categoria":""},{"fechaInicio":"","puesto":"6","nombre":"Flaviana","pais":"Brasil","edad":"","altura":"","nacimiento":"","juego":"","foto":"","puntos":"1080","categoria":""},{"fechaInicio":"","puesto":"7","nombre":"Veronica","pais":"Bolivia","edad":"","altura":"","nacimiento":"","juego":"","foto":"","puntos":"720","categoria":""},{"fechaInicio":"","puesto":"8","nombre":"Sonia","pais":"Bolivia","edad":"","altura":"","nacimiento":"","juego":"","foto":"","puntos":"720","categoria":""},{"fechaInicio":"","puesto":"9","nombre":"Fatima","pais":"Bolivia","edad":"","altura":"","nacimiento":"Paraguay","juego":"","foto":"","puntos":"540","categoria":""},{"fechaInicio":"","puesto":"10","nombre":"Melisa","pais":"Brasil","edad":"3/14/86","altura":"1.49","nacimiento":"Argentina","juego":"Diestro","foto":"","puntos":"540","categoria":"A"},{"fechaInicio":"","puesto":"11","nombre":"Araceli","pais":"Brasil","edad":"","altura":"","nacimiento":"","juego":"","foto":"","puntos":"360","categoria":""},{"fechaInicio":"","puesto":"12","nombre":"Cecilia","pais":"Bolivia","edad":"","altura":"","nacimiento":"","juego":"","foto":"","puntos":"360","categoria":""},{"fechaInicio":"","puesto":"13","nombre":"Mixelle","pais":"Paraguay","edad":"","altura":"","nacimiento":"","juego":"","foto":"","puntos":"360","categoria":""},{"fechaInicio":"","puesto":"","nombre":"","pais":"","edad":"","altura":"","nacimiento":"","juego":"","foto":"","puntos":"","categoria":""}]'
+  var ref = firebase.database().ref('tenis/femenino')
+  ref.set(JSON.parse(objeto))
+
 /*
+
 myTimer = setInterval(()=>{
     var hB = moment().tz("America/Sao_Paulo").format('h:mm:ss')
     var hLP = moment().tz("America/La_Paz").format('h:mm:ss')
@@ -87,13 +99,26 @@ myTimer = setInterval(()=>{
 }
 componentWillUnmount(){
 
+  if(this.props.elemento.foto != ""){
+    this.setState({
+      foto: this.props.elemento.foto
+    })
+  }
+
 }
   render(){
     return(
-      <View style={{ flex:1, elevation:2}}>
+
         <Image style={{flex:1, flexDirection:'row'}} source={{uri:this.state.fondo}}>
-          <View style={{position:'absolute', top: 0, left: 0, width: 400, height: 500, backgroundColor:'black', opacity:.3 }}>
+          <View style={{flex:2}}>
+            <View style={{position:'absolute', top: 0, left: 0, width: 400, height: 400, backgroundColor:'black', opacity:.3 }}>
+            </View>
           </View>
+          <View style={{flex:2}}>
+            <Image style={{flex:3, height:10}} source={{uri:this.props.elemento.foto}}>
+            </Image>
+          </View>
+
 
           <View style={{flexDirection:'row', position:'absolute', left:10, margin:10}}>
             <View style={{flex:1, alignItems:'center'}}>
@@ -110,10 +135,8 @@ componentWillUnmount(){
                 <Text style={{fontSize:15, color:'white'}}>{this.props.elemento.juego}</Text>
             </View>
           </View>
-          <Image style={{width:100, height:170, position:'absolute', right:15}} source={{uri:this.props.elemento.foto}}>
-          </Image>
         </Image>
-      </View>
+
     )
   }
 }

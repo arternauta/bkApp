@@ -74,7 +74,7 @@ class bkApp extends Component{
                 return <EntradaLTB {...route.props} navigator={navigator} route={route}/>
                   break
               }
-      case 'EntradaLTB':{
+      case 'TenisFemenino':{
               return <TenisFemenino {...route.props} navigator={navigator} route={route}/>
                     break
                       }
@@ -85,7 +85,7 @@ class bkApp extends Component{
 render(){
   return(
     <Navigator
-      initialRoute={{name:'EntradaLTB'}}
+      initialRoute={{name:'Menu'}}
       renderScene={this.renderScene }
       >
     </Navigator>
